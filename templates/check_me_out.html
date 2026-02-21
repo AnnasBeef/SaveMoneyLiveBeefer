@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Me Out</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body class="generic-page">
+    <main class="content simple-page">
+      <section class="panel">
+        <h1>Saved that much beef? might as well check me out</h1>
+        <p class="link-row">
+          <a href="https://github.com/AnnasBeef" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/anna-zhou-syde/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com/@annazhou4672" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://uwdbc.com/#about" target="_blank" rel="noopener noreferrer">UWDBC</a>
+          <a href="https://www.dragonboat.sport/events/idbf-championships-ccwc-wdbrc/" target="_blank" rel="noopener noreferrer">CCWC / WDBRC</a>
+        </p>
+        <p><a class="cta-link inline" href="{{ url_for('index') }}">Back to Search</a></p>
+      </section>
+
+      <section class="panel">
+        <h2>About Me</h2>
+        <p>I love Baking, Coffee, Gyming, and Dragon Boating we just qualified for CCWC Taiwan Aug 2026</p>
+        <div class="about-scroll" aria-label="About me photo gallery">
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/lift-weights-dragon-boat.jpg') }}" alt="Lifting weights with dragon boat friends">
+            <figcaption>I love to Lift Weights With Dragon Boat Friends</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/docks-about-to-paddle.jpg') }}" alt="Me on the docks about to paddle">
+            <figcaption>Me on the Docks about to Paddle</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/outrigger-laurel-creek.jpg') }}" alt="Outrigger canoeing at Laurel Creek">
+            <figcaption>Outrigger Canoeing at Laurel Creek</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/purpling-day-uwaterloo.jpg') }}" alt="Purpling day with friends at UWaterloo">
+            <figcaption>Purpling Day With Friends at UWaterloo</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/cheese-boards.jpg') }}" alt="Cheese board I made">
+            <figcaption>I Love to Make Cheese Boards</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/sticky-toffee.jpg') }}" alt="Sticky toffee pudding I made">
+            <figcaption>Sticky Toffee Pudding I made</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/mille-feuille.jpg') }}" alt="Mille feuille dessert">
+            <figcaption>Mille Feuille</figcaption>
+          </figure>
+          <figure class="about-card">
+            <img src="{{ url_for('static', filename='about/williams-study.jpg') }}" alt="Coffee while studying at Williams">
+            <figcaption>You Will Often Find me At Williams Studying</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Resume</h2>
+        <div class="pdf-wrap">
+          <iframe
+            src="{{ url_for('static', filename='docs/Anna_Zhou_Resume.pdf') }}"
+            title="Anna Zhou Resume"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

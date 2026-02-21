@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveMoneyLiveBeefer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="scene-wrap">
+      <canvas
+        id="steak-canvas"
+        data-model-url="{{ url_for('static', filename='models/Steakmodel2.glb') }}"
+      ></canvas>
+    </div>
+
+    <main class="content">
+      <div class="sticky-stack">
+        <section class="panel intro">
+          <div class="hero-title-row">
+            <h1>SaveMoneyLiveBeefer</h1>
+            <span class="hero-byline">by Anna Zhou</span>
+          </div>
+
+          <nav class="top-nav" aria-label="Main menu">
+            <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+            <a class="nav-link" href="{{ url_for('check_me_out') }}">Check Me Out</a>
+          </nav>
+
+          <p>Find The Books you want and Save More Beef.</p>
+
+          <form method="post" class="search-form">
+            <label for="query">Query</label>
+            <input id="query" name="query" type="text" value="{{ query }}" placeholder="Ask for book recommendations..." required>
+            <button type="submit">Search</button>
+          </form>
+        </section>
+
+        {% if error %}
+        <section class="panel error">
+          <h2>Error</h2>
+          <p>{{ error }}</p>
+        </section>
+        {% endif %}
+
+        {% if answer %}
+        <section class="panel">
+          <h2>Answer</h2>
+          <pre>{{ answer }}</pre>
+        </section>
+        {% endif %}
+
+        {% if retrieved %}
+        <section class="panel">
+          <h2>Retrieved Titles</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for b in retrieved %}
+              <tr>
+                <td>
+                  {% if b.get("_image_url") %}
+                  <img class="cover" src="{{ b.get('_image_url') }}" alt="Cover for {{ b.get('title', '') }}">
+                  {% else %}
+                  <span class="no-cover">No image</span>
+                  {% endif %}
+                </td>
+                <td>{{ b.get("title", "") }}</td>
+                <td>{{ b.get("category", "") }}</td>
+                <td>{{ b.get("price", "") }}</td>
+                <td>{{ b.get("_score", "") }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+        {% endif %}
+      </div>
+
+    </main>
+
+    <script type="module" src="{{ url_for('static', filename='viewer.js') }}"></script>
+  </body>
+</html>
