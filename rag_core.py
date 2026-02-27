@@ -101,17 +101,9 @@ def fetch_cover_image_url(book_url: str) -> str:
     return ""
 
 
-def detect_max_price(query: str) -> float | None:
-    m = re.search(r"(?:under|below|less than)\s+\$?£?(\d+(?:\.\d+)?)", query.lower())
-    if not m:
-        return None
-    return float(m.group(1))
-
-
 def retrieve_books(query: str, top_k: int = TOP_K, data_path: str | None = None) -> list[dict]:
     q = query.lower()
     q_words = [w for w in re.findall(r"[a-zA-Z]+", q) if len(w) >= 3]
-    max_price = detect_max_price(query)
 
     results: list[dict] = []
     for row in load_books(data_path):
@@ -129,9 +121,6 @@ def retrieve_books(query: str, top_k: int = TOP_K, data_path: str | None = None)
         score = base_score + category_boost + tag_boost + title_boost
 
         if score == 0:
-            continue
-
-        if max_price is not None and row["_price_num"] > max_price:
             continue
 
         row["_score"] = score
@@ -169,6 +158,7 @@ BOOK CONTEXT:
 {context}
 
 INSTRUCTIONS:
+- Recommend at least 1 book.
 - Recommend up to 5 books max.
 - Use bullet points.
 - For each item, include title and a 1-line reason grounded in context.
